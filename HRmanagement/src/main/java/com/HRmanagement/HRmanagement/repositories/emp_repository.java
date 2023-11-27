@@ -5,10 +5,10 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.HRmanagement.HRmanagement.entities.Employees;
+import com.HRmanagement.HRmanagement.entities.Employee;
 
 @Repository
-public interface emp_repository extends JpaRepository<Employees, Long> {
+public interface emp_repository extends JpaRepository<Employee, Long> {
 
-	Optional<Employees> findByUsername(String username);
+	Optional<Employee> findByUsername(String username);
 }

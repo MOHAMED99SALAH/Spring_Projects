@@ -32,6 +32,6 @@ public class department extends Base_Entity<Long> {
 	private Long number_Of_employess;
 
 	@OneToMany(mappedBy = "department")
-	private List<Employees> emps;
+	private List<Employee> emps;
 
 }

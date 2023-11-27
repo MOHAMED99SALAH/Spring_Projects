@@ -9,7 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import com.HRmanagement.HRmanagement.entities.Employees;
+import com.HRmanagement.HRmanagement.entities.Employee;
 import com.HRmanagement.HRmanagement.error.RecordNotFound;
 import com.HRmanagement.HRmanagement.error.passwordErrors;
 import com.HRmanagement.HRmanagement.models.passwordRequest;
@@ -26,9 +26,9 @@ public class Employee_service {
 
 	Logger log = LoggerFactory.getLogger(Employee_service.class);
 
-	public Optional<Employees> findById(Long id) {
+	public Optional<Employee> findById(Long id) {
 
-		Optional<Employees> emp = emp_repo.findById(id);
+		Optional<Employee> emp = emp_repo.findById(id);
 
 		if (emp.isPresent()) {
 			return emp;
@@ -40,9 +40,9 @@ public class Employee_service {
 
 	}
 
-	public Employees findByusername(String username) {
+	public Employee findByusername(String username) {
 
-		Optional<Employees> emp = emp_repo.findByUsername(username);
+		Optional<Employee> emp = emp_repo.findByUsername(username);
 
 		if (emp.get().getUsername() != null) {
 			return emp.get();
@@ -53,18 +53,18 @@ public class Employee_service {
 
 	}
 
-	public Employees getbyid(Long id) {
+	public Employee getbyid(Long id) {
 		return emp_repo.getById(id);
 	}
 
-	public List<Employees> findAll() {
+	public List<Employee> findAll() {
 		return emp_repo.findAll();
 
 	}
 
-	public Employees insert(Employees emp) {
+	public Employee insert(Employee emp) {
 
-		Employees empREF = emp;
+		Employee empREF = emp;
 
 		LocalDateTime date = LocalDateTime.now();
 		empREF.setId(emp.getId());
@@ -79,9 +79,9 @@ public class Employee_service {
 
 	}
 
-	public Employees update(Employees emp) {
+	public Employee update(Employee emp) {
 
-		Employees empREF = getbyid(emp.getId());
+		Employee empREF = getbyid(emp.getId());
 
 		LocalDateTime date = LocalDateTime.now();
 		empREF.setId(emp.getId());
@@ -97,7 +97,7 @@ public class Employee_service {
 
 	public void deleteById(Long id) {
 
-		Optional<Employees> emp = emp_repo.findById(id);
+		Optional<Employee> emp = emp_repo.findById(id);
 
 		if (emp.isPresent()) {
 			emp_repo.deleteById(id);
@@ -108,7 +108,7 @@ public class Employee_service {
 	}
 
 	public void changepassword(passwordRequest request, Principal connectedUser) {
-		Employees user = (Employees) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
+		Employee user = (Employee) ((UsernamePasswordAuthenticationToken) connectedUser).getPrincipal();
 
 		if (!passEncoder.matches(request.getCurrentPassword(), user.getPassword())) {
 			throw new passwordErrors(" wrong password");

@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
-import com.HRmanagement.HRmanagement.entities.Employees;
+import com.HRmanagement.HRmanagement.entities.Employee;
 import com.HRmanagement.HRmanagement.services.Employee_service;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -32,7 +32,7 @@ public class JwtServiceIMPL implements JWTservice {
 			@Override
 			public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 				// TODO Auto-generated method stub
-				Employees emp = emp_service.findByusername(username);
+				Employee emp = emp_service.findByusername(username);
 
 				return emp;
 			}
@@ -82,7 +82,7 @@ public class JwtServiceIMPL implements JWTservice {
 	}
 
 	@Override
-	public Boolean IsTokenValid(String Token, Employees emp) {
+	public Boolean IsTokenValid(String Token, Employee emp) {
 		final String username = extraectUsername(Token);
 		return (username.equals(emp.getUsername()) && !IsTokenExpired(Token));
 	}
