@@ -7,7 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
-import com.HRmanagement.HRmanagement.entities.Employees;
+import com.HRmanagement.HRmanagement.entities.Employee;
 import com.HRmanagement.HRmanagement.entities.Token;
 import com.HRmanagement.HRmanagement.enums.TokenType;
 import com.HRmanagement.HRmanagement.models.LoginResponse;
@@ -42,7 +42,7 @@ public class authService {
 
 	private final Employee_service emp_service;
 
-	public successfull_login register(@RequestBody @Valid Employees emp) {
+	public successfull_login register(@RequestBody @Valid Employee emp) {
 
 		emp_service.insert(emp);
 
@@ -76,7 +76,7 @@ public class authService {
 			storedToken.setRevoked(true);
 			tokenRepository.save(storedToken);
 			SecurityContextHolder.clearContext();
-			return logoutResponse.builder().message(" logout Succfully ").build();
+			return logoutResponse.builder().message(" logout Successfully ").build();
 
 		}
 
@@ -97,17 +97,19 @@ public class authService {
 			var user = emp_repository.findByUsername(userEmail).orElseThrow();
 			if (jwtService.IsTokenValid(refreshToken, user)) {
 				var accessToken = jwtService.generateToken(user.getUsername());
-				getUserValidTokens(user);
-				savedUserToken(user, refreshToken);
+				var RefreshToken = jwtService.generateRefreshToken(new HashMap<>(), user.getUsername());
 
-				return LoginResponse.builder().accessToken(accessToken).RefreshToken(refreshToken).build();
+				getUserValidTokens(user);
+				savedUserToken(user, accessToken);
+
+				return LoginResponse.builder().accessToken(accessToken).RefreshToken(RefreshToken).build();
 
 			}
 		}
 		return LoginResponse.builder().accessToken("Token Still valid ").RefreshToken("").build();
 	}
 
-	private void getUserValidTokens(Employees emp) {
+	private void getUserValidTokens(Employee emp) {
 
 		var allValidToken = tokenRepo.getAllvalidtokensByUser(emp.getId());
 
@@ -125,7 +127,7 @@ public class authService {
 
 	}
 
-	private void savedUserToken(Employees emp, String token) {
+	private void savedUserToken(Employee emp, String token) {
 		var userToken = Token.builder().emp(emp).token(token).tokenType(TokenType.BEARER).revoked(false).expired(false)
 				.build();
 		tokenRepo.save(userToken);

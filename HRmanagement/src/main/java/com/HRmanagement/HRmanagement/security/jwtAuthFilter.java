@@ -11,8 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
-import com.HRmanagement.HRmanagement.entities.Employees;
+import com.HRmanagement.HRmanagement.entities.Employee;
 import com.HRmanagement.HRmanagement.entities.Token;
 import com.HRmanagement.HRmanagement.repositories.TokenRepo;
 import com.HRmanagement.HRmanagement.services.Employee_service;
@@ -58,7 +57,7 @@ public class jwtAuthFilter extends OncePerRequestFilter {
 
 		if (userEmail != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-			Employees employee = (Employees) this.userDetailsService.loadUserByUsername(userEmail);
+			Employee employee = (Employee) this.userDetailsService.loadUserByUsername(userEmail);
 
 			var isTokenValid = tokenRepo.findByToken(jwt).map(t -> !t.isExpired() && !t.isRevoked()).orElse(false);
 

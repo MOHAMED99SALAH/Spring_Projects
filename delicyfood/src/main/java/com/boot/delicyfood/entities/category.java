@@ -15,24 +15,18 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name=" category")
+@Table(name = " category")
 @Setter
 @Getter
 @ToString
 public class category {
 
-	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="id")
+	@Column(name = "id")
 	Long id;
-	
-	
-	@Column(name="name")
+
+	@Column(name = "name")
 	String name;
 
-
-	
-	
-	
 }

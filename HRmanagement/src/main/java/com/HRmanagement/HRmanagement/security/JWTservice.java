@@ -4,7 +4,7 @@ import java.util.Map;
 
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import com.HRmanagement.HRmanagement.entities.Employees;
+import com.HRmanagement.HRmanagement.entities.Employee;
 
 public interface JWTservice {
 
@@ -16,7 +16,7 @@ public interface JWTservice {
 
 	String extraectUsername(String token);
 
-	Boolean IsTokenValid(String Token, Employees emp);
+	Boolean IsTokenValid(String Token, Employee emp);
 
 	Boolean IsTokenExpired(String Token);
 

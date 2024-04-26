@@ -39,6 +39,6 @@ public class Token {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "emp_id")
-	public Employees emp;
+	public Employee emp;
 
 }

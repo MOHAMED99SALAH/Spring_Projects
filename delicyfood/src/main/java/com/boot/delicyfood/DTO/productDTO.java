@@ -17,27 +17,21 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-
-
 @Getter
 @Setter
 @ToString
 public class productDTO {
 
-
-
 	Long productID;
 
 	String name;
-	
 
-	String price ;
-	
+	String price;
+
 	double quantity;
-	
+
 	String imagePath;
-	
+
 	Long cat_id;
-	
-	
+
 }

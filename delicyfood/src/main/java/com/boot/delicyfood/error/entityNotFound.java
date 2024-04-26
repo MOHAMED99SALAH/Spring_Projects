@@ -1,17 +1,15 @@
 package com.boot.delicyfood.error;
 
-public class entityNotFound extends RuntimeException {
+public class EntityNotFound extends RuntimeException {
 
-	
-	public entityNotFound() {
+	public EntityNotFound() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public entityNotFound(String message) {
+	public EntityNotFound(String message) {
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
 
-	
 }

@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import com.HRmanagement.HRmanagement.entities.Employees;
+import com.HRmanagement.HRmanagement.entities.Employee;
 import com.HRmanagement.HRmanagement.models.LoginRequest;
 import com.HRmanagement.HRmanagement.models.LoginResponse;
 import com.HRmanagement.HRmanagement.models.logoutResponse;
@@ -27,7 +27,7 @@ public class authController {
 	
 	@Operation(summary = " create a user ")
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
-	public successfull_login register(@RequestBody @Valid Employees emp) {
+	public successfull_login register(@RequestBody @Valid Employee emp) {
 		return authService.register(emp);
 	}
 

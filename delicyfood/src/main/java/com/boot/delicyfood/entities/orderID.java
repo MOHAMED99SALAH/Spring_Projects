@@ -14,20 +14,16 @@ import lombok.ToString;
 @Embeddable
 @Setter
 @Getter
-public class orderID  implements Serializable{
+public class orderID implements Serializable {
 
-	
 	private Long orderID;
 	private Long productID;
-	
-	
-	
-	
-	
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(orderID, productID);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -39,6 +35,5 @@ public class orderID  implements Serializable{
 		orderID other = (orderID) obj;
 		return Objects.equals(orderID, other.orderID) && Objects.equals(productID, other.productID);
 	}
-	
-	
+
 }

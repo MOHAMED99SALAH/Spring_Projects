@@ -17,62 +17,44 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class errorController extends ResponseEntityExceptionHandler {
+public class ErrorController extends ResponseEntityExceptionHandler {
 
-	
-	
-	
 	@ExceptionHandler(RecordNotFound.class)
-	public ResponseEntity<?> recordNotFound(RecordNotFound ex)
-	{
-		
-		errorResponse error = new errorResponse(ex.getMessage(),Arrays.asList(ex.getMessage()));
+	public ResponseEntity<?> recordNotFound(RecordNotFound ex) {
+
+		ErrorResponse error = new ErrorResponse(ex.getMessage(), Arrays.asList(ex.getMessage()));
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
-		
+
 	}
-	
-	
-	
-	
-	@ExceptionHandler(entityNotFound.class)
-	public ResponseEntity<?> entityNotFound(entityNotFound ex)
-	{
-		
-		errorResponse error = new errorResponse(ex.getMessage(),Arrays.asList(ex.getMessage()));
+
+	@ExceptionHandler(EntityNotFound.class)
+	public ResponseEntity<?> entityNotFound(EntityNotFound ex) {
+
+		ErrorResponse error = new ErrorResponse(ex.getMessage(), Arrays.asList(ex.getMessage()));
 
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
-		
+
 	}
-	
-	
 
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			org.springframework.http.HttpHeaders headers, HttpStatus status, WebRequest request) {
 		// TODO Auto-generated method stub
-		
-		List<String> errors =new ArrayList();
-		
-		
-		for(FieldError er : ex.getBindingResult().getFieldErrors())
-		{
+
+		List<String> errors = new ArrayList();
+
+		for (FieldError er : ex.getBindingResult().getFieldErrors()) {
 			errors.add(er.getDefaultMessage());
 		}
-		
-		for(ObjectError er : ex.getBindingResult().getGlobalErrors())
-		{
+
+		for (ObjectError er : ex.getBindingResult().getGlobalErrors()) {
 			errors.add(er.getDefaultMessage());
 		}
-		
-		errorResponse error = new errorResponse(ex.toString(),errors);
-		
-		
-		
+
+		ErrorResponse error = new ErrorResponse(ex.toString(), errors);
+
 		return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
 	}
-	
 
-	
-	
 }

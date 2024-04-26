@@ -3,25 +3,19 @@ package com.boot.delicyfood.error;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class errorResponse {
+public class ErrorResponse {
 
-	
-	
-	
+	String message;
 
-	 String message;
-	
-	 int status ;
-	  
-	 Boolean success;
+	int status;
 
-	 LocalDateTime time;
-	 
-	 List<String> details;
+	Boolean success;
 
+	LocalDateTime time;
 
+	List<String> details;
 
-	public errorResponse(String message,  List<String> details) {
+	public ErrorResponse(String message, List<String> details) {
 		super();
 		this.message = message;
 		this.status = 404;
@@ -42,7 +36,7 @@ public class errorResponse {
 		return status;
 	}
 
-	public void setStatus(int  status) {
+	public void setStatus(int status) {
 		this.status = status;
 	}
 
@@ -70,5 +64,4 @@ public class errorResponse {
 		this.details = details;
 	}
 
-	
 }

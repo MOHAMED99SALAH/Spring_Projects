@@ -1,6 +1,6 @@
 package com.boot.delicyfood.error;
 
-public class RecordNotFound extends RuntimeException{
+public class RecordNotFound extends RuntimeException {
 
 	public RecordNotFound() {
 		super();
@@ -12,7 +12,4 @@ public class RecordNotFound extends RuntimeException{
 		// TODO Auto-generated constructor stub
 	}
 
-	
-	
-	
 }

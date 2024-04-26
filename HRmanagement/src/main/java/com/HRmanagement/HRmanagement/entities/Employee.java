@@ -26,7 +26,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "employees")
-public class Employees extends Base_Entity<Long> implements UserDetails {
+public class Employee extends Base_Entity<Long> implements UserDetails {
 
 	private String fullName;
 
