@@ -1,0 +1,28 @@
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+server:
+  port: 8090
+
+spring:
+  application:
+    name: student
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/school_management
+    username: mosalah
+    password: mosalah
+  jpa:
+    hibernate.ddl-auto: update
+    generate-ddl: true
+    show-sql: true
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+
+management:
+  tracing:
+    sampling:
+      probability: 1.0
